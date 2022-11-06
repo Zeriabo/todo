@@ -1,11 +1,13 @@
 package com.todo.service;
 
-import org.springframework.http.ResponseEntity;
-
 import com.todo.model.User;
 
 public interface UserService {
-	public User register(User body) throws Exception;
+
+	User register(User body) throws Exception;
 	
-	boolean signIn(String username, String password);
+	User signIn(String username, String password);
+	
+	void changePassword(String email, String password);
+	
 }

@@ -45,12 +45,34 @@ public class UserServiceImpl implements UserService{
 		
 	}
 
+
 	@Override
-	public boolean signIn(String username, String password) {
+	public User signIn(String email, String password) {
+		if(email  == null || password==null)
+		{
+			return null;
+		}
+		User user =userRepository.loginUser(email,password);
+		if(user!=null)
+		{
+			return user;
+		}else {
+			
+			return null;
+		}
+		
+		
+	}
+
+
+	@Override
+	public void changePassword(String email, String password) {
 		
 
-		userRepository.findOne(null)
-		return false;
+	 userRepository.changePassword(email,password);
+		
+	
+		
 	}
 
 }

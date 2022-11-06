@@ -1,6 +1,5 @@
 package com.todo.model;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
