@@ -17,6 +17,6 @@ import org.springframework.stereotype.Repository;
 		@Query(value="Select * from public.\"user\"  WHERE email=:email", nativeQuery = true)
 	    User getUserByEmail(@Param("email") String email);
 		
-		@Query(value="Update public.\"user\" Set password=:password WHERE email=:email", nativeQuery = true)
-		void changePassword(@Param("email") String email, @Param("password") String password);
+		@Query(value="Update public.\"user\" Set password=:password WHERE email=:email RETURNING id", nativeQuery = true)
+		int changePassword(@Param("email") String email, @Param("password") String password);
 }

@@ -117,8 +117,8 @@ public class UserController {
             	  
             	  if(found)
             	  {
-            		  userservice.changePassword(email, password);
-            		  return  ResponseEntity.status(200).body("password changed!");
+            		 int updated= userservice.changePassword(email, password);
+            		  return  ResponseEntity.status(200).body(updated>-1);
             	  }
             	 
               

@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService{
 			return user;
 		}else {
 			
-			return null;
+        	return null;
 		}
 		
 		
@@ -66,10 +66,10 @@ public class UserServiceImpl implements UserService{
 
 
 	@Override
-	public void changePassword(String email, String password) {
+	public int changePassword(String email, String password) {
 		
 
-	 userRepository.changePassword(email,password);
+	return userRepository.changePassword(email,password);
 		
 	
 		
