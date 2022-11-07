@@ -61,18 +61,13 @@ public class UserServiceImpl implements UserService{
         	return null;
 		}
 		
-		
 	}
-
 
 	@Override
 	public int changePassword(String email, String password) {
-		
 
 	return userRepository.changePassword(email,password);
-		
-	
-		
+			
 	}
 
 }

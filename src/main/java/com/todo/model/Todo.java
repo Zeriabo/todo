@@ -1,6 +1,7 @@
 package com.todo.model;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,17 +27,17 @@ public class Todo {
 	@Column(name = "description")
 	private String description;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="userId")
-	private User userId;
+	private User user;
 	
 	@CreationTimestamp
 	@Column(name = "createdAt", updatable = false)
-	private Date createdAt;
+	private LocalDateTime createdAt;
 	
 	@UpdateTimestamp
 	@Column(name = "updatedAt", updatable = false)
-	private Date updatedAt;
+	private LocalDateTime updatedAt;
 	
 	
 	@Column(name = "status")
@@ -48,13 +49,18 @@ public class Todo {
 	 * @author zeriab
 	 * ENUM status
 	 */
-	private enum Status {
+	public  enum Status {
 		NotStarted,
 		OnGoing,
 		Completed
 		};
 		
-		
+	
+   public Todo()
+   {
+	   
+   }
+  
 	/**
 	 * @return the id
 	 */
@@ -80,11 +86,11 @@ public class Todo {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public User getUserId() {
-		return userId;
+	public User getUser() {
+		return user;
 	}
-	public void setUserId(User userId) {
-		this.userId = userId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 	public void setStatus(Status status )
 	{
@@ -94,18 +100,21 @@ public class Todo {
 	{
 		return status;
 	}
-	public Date getCreated() {
+	public LocalDateTime getCreated() {
 		return createdAt;
 	}
-	public void setCreated(Date created) {
+	public void setCreated(LocalDateTime created) {
 		this.createdAt = created;
 	}
-	public Date getUpdated() {
+	public LocalDateTime getUpdated() {
 		return updatedAt;
 	}
-	public void setUpdated(Date updated) {
+	public void setUpdated(LocalDateTime updated) {
 		this.updatedAt = updated;
 	}
 	
-	
+	public String getString()
+	{
+		return "Todo name: "+this.getName()+" Description: "+this.getDescription()+" created at "+this.createdAt;
+	}
 }
