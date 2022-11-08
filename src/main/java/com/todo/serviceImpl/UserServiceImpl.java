@@ -2,12 +2,12 @@ package com.todo.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 
+import org.springframework.stereotype.Component;
 import com.todo.exception.CredentialsException;
 import com.todo.exception.NullException;
 import com.todo.exception.UserAlreadyExistsException;
+import com.todo.exception.UserNotFoundException;
 import com.todo.model.User;
 import com.todo.repository.UserRepository;
 import com.todo.service.UserService;
@@ -23,27 +23,21 @@ public class UserServiceImpl implements UserService {
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
 	@Override
-	public User register(User body) throws Exception {
-
-		User user = new User();
-		user.setEmail(body.getEmail());
-
+	public User register(User user) throws Exception {
+		
 		User userIfExisted = userRepository.getUserByEmail(user.getEmail());
 		
 		if (userIfExisted instanceof User) {
 			throw new UserAlreadyExistsException();
 		}
 
-		user.setPassword(body.getPassword());
+		user.setPassword(user.getPassword());
 
 		try {
 			Object obj = userRepository.save(user);
+	         
+			return (User) obj;
 			
-			if (obj instanceof User) {
-				return (User) obj;
-			} else {
-				return null;
-			}
 		} catch (Exception ex) {
 			
 			throw ex;
@@ -79,9 +73,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public int changePassword(String email, String password) {
-
-		return userRepository.changePassword(email, password);
+	public boolean changePassword(String email, String password) throws Exception {
+		
+		
+		User user = userRepository.getUserByEmail(email);
+		
+		if(user instanceof User)
+		{
+			return userRepository.changePassword(email, password)>0;
+			
+		}else {
+			throw new UserNotFoundException();
+		}
+		
 
 	}
 

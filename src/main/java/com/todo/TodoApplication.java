@@ -8,7 +8,11 @@ public class TodoApplication {
 	
 
 	public static void main(String[] args) {
+		try {
 		SpringApplication.run(TodoApplication.class, args);
+		  } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 	}
 
 }

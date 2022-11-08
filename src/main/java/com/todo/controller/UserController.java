@@ -123,8 +123,8 @@ public class UserController {
             	  
             	  if(found)
             	  {
-            		 int updated= userservice.changePassword(email, password);
-            		  return  ResponseEntity.status(200).body(updated>-1);
+            		 boolean updated= userservice.changePassword(email, password);
+            		  return  ResponseEntity.status(200).body(updated);
             	  }
             	 
               

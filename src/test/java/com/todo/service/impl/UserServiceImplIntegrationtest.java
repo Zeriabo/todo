@@ -1,9 +1,7 @@
-package com.todo;
+package com.todo.service.impl;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +9,10 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
-
 import com.todo.exception.CredentialsException;
 import com.todo.exception.NullException;
 import com.todo.exception.UserAlreadyExistsException;
+import com.todo.exception.UserNotFoundException;
 import com.todo.model.User;
 import com.todo.repository.UserRepository;
 import com.todo.service.UserService;
@@ -34,28 +32,12 @@ public class UserServiceImplIntegrationtest {
 	    }
 	 
 	    @Autowired
-	    private static UserService userService;
+	    private  UserService userService;
 	    
 	    @MockBean
 	    private UserRepository userRepository;
 	    
-	    @Test
-	    public void registerUser() throws Exception {
-          User user = new User();
-          user.setEmail("test@test.com");
-          user.setPassword("test");
-          
-          userService.register(user);
-          
-         
-          Exception exception = assertThrows(UserAlreadyExistsException.class, () -> {
-        	  userService.register(user);
-          });
-          
-          String actualMessage = exception.getMessage();
-          
-          assertTrue(actualMessage.contains("The user already exists!"));
-	     }
+	   
 	    
 	    @Test
 	    public void signInUser() throws Exception {
@@ -72,33 +54,55 @@ public class UserServiceImplIntegrationtest {
           
           assertTrue(actualMessage.contains("The entered data should not be null!"));
           
+         
+	     }
+	    @Test
+	    public void signInUserCredentialsWrong() throws Exception {
+	    	
+          User user = new User();
+          user.setEmail("test@test.com");
+          user.setPassword("test");
+         
           Exception exception2 = assertThrows(CredentialsException.class, () -> {
-        	  userService.signIn("asdlkjaslkdjas","jakshdkjashdjk");
+          	  userService.signIn("asdlkjaslkdjas","jakshdkjashdjk");
+            });
+            
+            String actualMessage2 = exception2.getMessage();
+            
+            assertTrue(actualMessage2.contains("The user or password wrong!"));
+            
+            
+	     }
+	 
+	    @Test
+	    public void changePassword() throws Exception {
+	    	
+          User user = new User();
+          user.setEmail("test@test.com");
+          user.setPassword("test");
+    
+          userService.register(user);
+          
+         
+          Exception exception = assertThrows(UserNotFoundException.class, () -> {
+        	  userService.changePassword(null, null);
+          });
+          
+          String actualMessage = exception.getMessage();
+          
+          assertTrue(actualMessage.contains("The user is not found!"));
+          
+          Exception exception2 = assertThrows(UserNotFoundException.class, () -> {
+        	  userService.changePassword("test3@test.com", "123123");
           });
           
           String actualMessage2 = exception2.getMessage();
           
-          assertTrue(actualMessage2.contains("The user or password wrong!"));
+          assertTrue(actualMessage2.contains("The user is not found!"));
+
           
-          
+      
 	     }
-/*
- * 
- * 	
 
-					@Override
-					public User signIn(String username, String password) {
-						// TODO Auto-generated method stub
-						return null;
-					}
-
-					@Override
-					public int changePassword(String email, String password) {
-						// TODO Auto-generated method stub
-						return 0;
-					}
-	                // implement methods
-	            };
- */
 	}
 

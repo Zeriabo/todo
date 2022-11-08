@@ -9,6 +9,6 @@ public interface UserService {
 		
 	User signIn(String username, String password) throws Exception;
 	
-	int changePassword(String email, String password);
+	boolean changePassword(String email, String password) throws Exception;
 	
 }
