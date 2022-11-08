@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,6 +16,7 @@ import com.todo.api.AuthResponse;
 import com.todo.model.Todo;
 import com.todo.model.Todo.Status;
 import com.todo.model.User;
+import com.todo.repository.TodoRepository;
 import com.todo.repository.UserRepository;
 import com.todo.service.TodoService;
 import com.todo.service.UserService;
@@ -35,6 +37,8 @@ public class TodoController {
 	TodoService todoservice;
 	@Autowired
 	UserRepository userRepository;
+	@Autowired
+	TodoRepository todoRepository;
 
 	public TodoController() {
 
@@ -89,8 +93,43 @@ public class TodoController {
 			return ResponseEntity.ok((created) ? "Created: " + todoToCreate.getString() : "Not Created");
 		} else {
 
-			// handle Exception inserting without login
 			return ResponseEntity.status(500).body("User not found!");
+		}
+
+	}
+
+	@PutMapping(value = "", consumes = { MediaType.ALL_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE })
+
+	public ResponseEntity<Object> updateTodos(@RequestParam(required = true) long id, @RequestBody Todo todo)
+			throws Exception {
+
+		Todo newTodo = todo;
+		newTodo.setId(id);
+		Optional<Todo> toBeUpdated = todoRepository.findById(id);
+
+		if (toBeUpdated.isPresent()) {
+			Todo todoupdatyyed = todoRepository.save(newTodo);
+			return ResponseEntity.ok(todoupdatyyed);
+		} else {
+			return ResponseEntity.status(404).body("Todo is not found!");
+		}
+
+	}
+	
+      @DeleteMapping(value = "", consumes = { MediaType.ALL_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
+			MediaType.APPLICATION_XML_VALUE })
+
+	public ResponseEntity<Object> deleteTodo(@RequestParam(required = true) long id)
+			throws Exception {
+
+		Optional<Todo> toBeDeleted = todoRepository.findById(id);
+
+		if (toBeDeleted.isPresent()) {
+		       todoRepository.deleteById(toBeDeleted.get().getId());
+			return ResponseEntity.ok(toBeDeleted + "Deleted");
+		} else {
+			return ResponseEntity.status(404).body("Todo is not found!");
 		}
 
 	}
