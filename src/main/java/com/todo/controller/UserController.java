@@ -44,13 +44,21 @@ public class UserController {
 					MediaType.APPLICATION_XML_VALUE })
 
 	public ResponseEntity signUp(@RequestBody User user) throws Exception {
-		
-	User registered= userservice.register(user);
-     if(registered==null)
+ try {
+	 User registered= userservice.register(user);
+	 if(registered==null)
      {
     	 return ResponseEntity.status(500).body("Error: not registered!");
      }
-	return  ResponseEntity.ok().body(registered);
+	 
+	 return  ResponseEntity.ok().body(registered);
+ }catch(Exception ex)
+ {
+	 return  ResponseEntity.status(500).body(ex.getMessage());
+ }
+	
+    
+	
 	}
 	
 	@PostMapping(value = "/signin", consumes = { MediaType.APPLICATION_JSON_VALUE,
