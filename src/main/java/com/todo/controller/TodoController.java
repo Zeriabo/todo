@@ -12,21 +12,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.todo.api.AuthResponse;
+
+import com.todo.exception.UserNotFoundException;
 import com.todo.model.Todo;
 import com.todo.model.Todo.Status;
 import com.todo.model.User;
 import com.todo.repository.TodoRepository;
 import com.todo.repository.UserRepository;
 import com.todo.service.TodoService;
-import com.todo.service.UserService;
-import com.todo.util.JwtTokenUtil;
-import java.lang.reflect.InvocationTargetException;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-
 import java.util.*;
-import java.io.*;
+
 
 @CrossOrigin("*")
 @RestController
@@ -92,8 +87,9 @@ public class TodoController {
 			boolean created = todoservice.createTodo(todoToCreate);
 			return ResponseEntity.ok((created) ? "Created: " + todoToCreate.getString() : "Not Created");
 		} else {
-
-			return ResponseEntity.status(500).body("User not found!");
+             
+			throw new UserNotFoundException();
+		
 		}
 
 	}
@@ -114,7 +110,6 @@ public class TodoController {
 		} else {
 			return ResponseEntity.status(404).body("Todo is not found!");
 		}
-
 	}
 	
       @DeleteMapping(value = "", consumes = { MediaType.ALL_VALUE }, produces = { MediaType.APPLICATION_JSON_VALUE,
