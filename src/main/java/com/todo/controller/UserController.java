@@ -17,8 +17,6 @@ import com.todo.util.JwtTokenUtil;
 import java.lang.reflect.InvocationTargetException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
-import java.util.Iterator;  
-import java.util.Collection;
 import java.util.Date;  
 
 @CrossOrigin("*")
@@ -83,7 +81,7 @@ public class UserController {
 	public ResponseEntity checkToken(@RequestParam String email,@RequestParam String token) throws Exception {
 	
 	      try {
-	    	  Jws<Claims> checked = jwtUtil.parseJwt(token);
+	    	  Jws<Claims> checked = JwtTokenUtil.parseJwt(token);
 	    	  System.out.print(checked);
 	      }catch(Exception ex)
 	      {

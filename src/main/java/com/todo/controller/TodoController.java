@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.todo.exception.TodoNotFoundException;
 import com.todo.exception.UserNotFoundException;
 import com.todo.model.Todo;
 import com.todo.model.Todo.Status;
@@ -89,7 +90,7 @@ public class TodoController {
 		} else {
              
 			throw new UserNotFoundException();
-		
+			
 		}
 
 	}
@@ -108,7 +109,8 @@ public class TodoController {
 			Todo todoupdatyyed = todoRepository.save(newTodo);
 			return ResponseEntity.ok(todoupdatyyed);
 		} else {
-			return ResponseEntity.status(404).body("Todo is not found!");
+			throw new TodoNotFoundException();
+			
 		}
 	}
 	
@@ -124,7 +126,8 @@ public class TodoController {
 		       todoRepository.deleteById(toBeDeleted.get().getId());
 			return ResponseEntity.ok(toBeDeleted + "Deleted");
 		} else {
-			return ResponseEntity.status(404).body("Todo is not found!");
+			
+			throw new TodoNotFoundException();
 		}
 
 	}
