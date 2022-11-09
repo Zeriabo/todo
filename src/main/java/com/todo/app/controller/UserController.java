@@ -1,4 +1,4 @@
-package com.todo.controller;
+package com.todo.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,13 +10,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import com.todo.api.AuthResponse;
-import com.todo.model.User;
-import com.todo.service.UserService;
-import com.todo.util.JwtTokenUtil;
-import java.lang.reflect.InvocationTargetException;
+
+import com.todo.app.api.AuthResponse;
+import com.todo.app.model.User;
+import com.todo.app.service.UserService;
+import com.todo.app.util.JwtTokenUtil;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.Date;  
 
 @CrossOrigin("*")

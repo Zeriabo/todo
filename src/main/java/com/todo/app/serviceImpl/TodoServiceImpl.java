@@ -1,17 +1,15 @@
-package com.todo.serviceImpl;
+package com.todo.app.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import com.todo.app.model.Todo;
+import com.todo.app.repository.TodoRepository;
+import com.todo.app.service.TodoService;
+import com.todo.app.service.UserService;
 import java.util.List;
-import com.todo.model.Todo;
-import com.todo.repository.TodoRepository;
-import com.todo.repository.UserRepository;
-import com.todo.service.TodoService;
-import com.todo.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 @Component
 public class TodoServiceImpl implements TodoService{
 
@@ -48,10 +46,11 @@ public class TodoServiceImpl implements TodoService{
 
 	@Override
 	public boolean createTodo(Todo todo) throws Exception {
-		
-
-		return todoRepository.save(todo) instanceof Todo;
+		// TODO Auto-generated method stub
+		return false;
 	}
+
+
 
 
 

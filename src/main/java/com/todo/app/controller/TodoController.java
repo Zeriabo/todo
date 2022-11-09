@@ -1,4 +1,4 @@
-package com.todo.controller;
+package com.todo.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.todo.exception.TodoNotFoundException;
-import com.todo.exception.UserNotFoundException;
-import com.todo.model.Todo;
-import com.todo.model.Todo.Status;
-import com.todo.model.User;
-import com.todo.repository.TodoRepository;
-import com.todo.repository.UserRepository;
-import com.todo.service.TodoService;
+import com.todo.app.exception.TodoNotFoundException;
+import com.todo.app.exception.UserNotFoundException;
+import com.todo.app.model.Todo;
+import com.todo.app.model.Todo.Status;
+import com.todo.app.model.User;
+import com.todo.app.repository.TodoRepository;
+import com.todo.app.repository.UserRepository;
+import com.todo.app.service.TodoService;
 import java.util.*;
 
 

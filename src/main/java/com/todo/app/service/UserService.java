@@ -1,7 +1,6 @@
-package com.todo.service;
+package com.todo.app.service;
 
-import com.todo.exception.NullException;
-import com.todo.model.User;
+import com.todo.app.model.User;
 
 public interface UserService {
 

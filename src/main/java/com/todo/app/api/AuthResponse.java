@@ -1,4 +1,4 @@
-package com.todo.api;
+package com.todo.app.api;
 
 public class AuthResponse {
     private String email;

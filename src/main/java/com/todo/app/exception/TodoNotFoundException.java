@@ -1,4 +1,4 @@
-package com.todo.exception;
+package com.todo.app.exception;
 
 public class TodoNotFoundException extends Exception {
 	 /**

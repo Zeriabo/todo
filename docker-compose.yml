@@ -1,0 +1,33 @@
+version: '3.1'
+services:
+
+  db:
+    image: "postgres:12"
+    container_name: 'db'
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_PASSWORD=todopassword
+      - POSTGRES_USER=todouser
+      - POSTGRES_DB=todo
+  app:
+    container_name: 'todo-server-container'
+    image: 'todo-server'
+    build:
+      context: .
+    ports:
+      - 8080:8080
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/todo
+      - SPRING_DATASOURCE_USERNAME=todouser
+      - SPRING_DATASOURCE_PASSWORD=todopassword
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - spring.datasource.hikari.connectionTimeout=20000
+      - spring.datasource.hikari.maximumPoolSize=5
+      - app.jwt.secret=abcdefghijklmnOPQRSTUVWXYZ123
+

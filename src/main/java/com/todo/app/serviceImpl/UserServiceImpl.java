@@ -1,16 +1,14 @@
-package com.todo.serviceImpl;
+package com.todo.app.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.stereotype.Component;
-import com.todo.exception.CredentialsException;
-import com.todo.exception.NullException;
-import com.todo.exception.UserAlreadyExistsException;
-import com.todo.exception.UserNotFoundException;
-import com.todo.model.User;
-import com.todo.repository.UserRepository;
-import com.todo.service.UserService;
+import com.todo.app.exception.CredentialsException;
+import com.todo.app.exception.NullException;
+import com.todo.app.exception.UserAlreadyExistsException;
+import com.todo.app.exception.UserNotFoundException;
+import com.todo.app.model.User;
+import com.todo.app.repository.UserRepository;
+import com.todo.app.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

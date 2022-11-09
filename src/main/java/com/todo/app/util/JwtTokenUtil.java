@@ -1,23 +1,16 @@
-package com.todo.util;
+package com.todo.app.util;
 
 import java.util.Date;
-
-import javax.crypto.spec.SecretKeySpec;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import com.todo.model.User;
-import com.todo.repository.UserRepository;
-
+import com.todo.app.model.User;
+import com.todo.app.repository.UserRepository;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.Jws;
-
-import java.security.Key;
 import java.security.KeyPair;
  
 @Component

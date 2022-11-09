@@ -1,7 +1,9 @@
-package com.todo.service;
+package com.todo.app.service;
 
-import com.todo.model.Todo;
+
 import java.util.List;
+
+import com.todo.app.model.Todo;
 
 public interface TodoService {
 
