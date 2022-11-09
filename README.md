@@ -28,7 +28,9 @@ MAVEN
 * PUT /api/v1/todos/:id: Update a todo item
 * DELETE /api/v1/todos/:id: Delete a todo item
 
+* unit tests done.
+
 # HOW TO RUN THE APPLICATION
 
 * Application is dockerized run it by executing the command in the root folder: docker compose up --build
-unit tests done.
+
