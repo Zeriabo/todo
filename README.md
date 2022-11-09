@@ -22,6 +22,7 @@ MAVEN
 * POST /api/v1/signin: Sign in using email & password. The system will return the JWT token that can be used to call the APIs that follow
 * POST /api/v1/checkToken?token Checks the token if its valid or not returns boolean
 * PUT /api/v1/updatepassword: Change user’s password
+* GET /api/v1/todos Gets all the todos
 * GET /api/v1/todos?status=[status]: Get a list of todo items. Optionally, a status query param can be included to return only items of specific status. If not present, return all items
 * POST /api/v1/todos: Create a new todo item
 * PUT /api/v1/todos/:id: Update a todo item
