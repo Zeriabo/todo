@@ -13,6 +13,9 @@ Spring Boot
 # Database 
 PostgreSQL
 
+# Automation tool
+MAVEN
+
 # Endpoints
 
 * POST /api/v1/signup: Sign up as an user of the system, using email & password
@@ -22,3 +25,7 @@ PostgreSQL
 * POST /api/v1/todos: Create a new todo item
 * PUT /api/v1/todos/:id: Update a todo item
 * DELETE /api/v1/todos/:id: Delete a todo item
+
+# HOW TO RUN THE APPLICATION
+
+* Application is dockerized run it by executing the command in the root folder: docker compose up --build
