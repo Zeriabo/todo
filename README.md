@@ -31,3 +31,4 @@ MAVEN
 # HOW TO RUN THE APPLICATION
 
 * Application is dockerized run it by executing the command in the root folder: docker compose up --build
+unit tests done.
