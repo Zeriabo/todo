@@ -5,7 +5,7 @@ Spring boot TODO application
 Application that requires users to be logged in before they can call the APIs. One user can create multiple todo items and one todo item can only belong to a single user
 
 # language 
-Java 11 or above
+Java 19 or above
 
 # Framework 
 Spring Boot
